@@ -46,7 +46,7 @@ jobs:
 
       - name: Run Terraform initialize
         working-directory: iac
-        run: terraform init
+        run: terraform init -reconfigure
         
       - name: Run Terraform apply/destroy
         working-directory: iac
