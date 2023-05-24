@@ -2,7 +2,7 @@
 terraform {
   backend "s3" {
     bucket         = "steevy-terraform-remote-tate"
-    key            = "rentzone-app/terraform.tfstate"
+    key            = "rentzone-dev/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-state-lock"
   }
