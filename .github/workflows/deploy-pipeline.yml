@@ -42,6 +42,11 @@ jobs:
       - name: Run Terraform unlock
         working-directory: iac
         run: terraform force-unlock e10e8f3a-be01-036a-d7b3-4f81cf669f26
+      
+      - name: Run Terraform initialize
+        working-directory: iac
+        run: terraform init -reconfigure
+
 
 
       - name: Run Terraform initialize
