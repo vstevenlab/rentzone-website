@@ -239,7 +239,7 @@ jobs:
           IMAGE_TAG: ${{ needs.deploy_aws_infrastructure.outputs.image_tag }}
         run: |
           docker build \
-          --build-arg PERSONAL_ACCESS_TOKEN=${{ screts.PERSONAL_ACCESS_TOKEN }} \
+          --build-arg PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} \
           --build-arg GITHUB_USERNAME=${{ env.GITHUB_USERNAME }} \
           --build-arg REPOSITORY_NAME=${{ env.REPOSITORY_NAME }} \
           --build-arg WEB_FILE_ZIP=${{ env.WEB_FILE_ZIP }} \
