@@ -281,7 +281,7 @@ jobs:
           RDS_ENDPOINT: ${{ needs.deploy_aws_infrastructure.outputs.rds_endpoint }}
           ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.ouputs.environment_file_name }}
         run: |
-          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> ${{ env.ENVIRONMENT_FILE_NAME}}
+          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "GITHUB_USERNAME=${{ env.GITHUB_USERNAME }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "REPOSITORY_NAME=${{ env.REPOSITORY_NAME }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "WEB_FILE_ZIP=${{ env.WEB_FILE_ZIP }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
