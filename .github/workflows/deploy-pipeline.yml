@@ -9,7 +9,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
   working_directory: ./iac
-  TERRAFORM_ACTION: destroy
+  TERRAFORM_ACTION: apply
   GITHUB_USERNAME: vstevenlab
   REPOSITORY_NAME: application-codes
   WEB_FILE_ZIP: rentzone.zip
@@ -276,12 +276,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Export environment variable values to file
-        env: 
+        env:
           DOMAIN_NAME: ${{ needs.deploy_aws_infrastructure.outputs.domain_name }}
           RDS_ENDPOINT: ${{ needs.deploy_aws_infrastructure.outputs.rds_endpoint }}
-          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.ouputs.environment_file_name }}
+          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.environment_file_name }}
         run: |
-          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
+          echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" > ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "GITHUB_USERNAME=${{ env.GITHUB_USERNAME }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "REPOSITORY_NAME=${{ env.REPOSITORY_NAME }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "WEB_FILE_ZIP=${{ env.WEB_FILE_ZIP }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
@@ -294,7 +294,6 @@ jobs:
 
       - name: Upload environment file to S3
         env:
-          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.ouputs.environment_file_name }}
-          ENV_FILE_BUCKET_NAME: ${{ needs.deploy_aws_infrastructure.ouputs.env_file_bucket_name }}
+          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.environment_file_name }}
+          ENV_FILE_BUCKET_NAME: ${{ needs.deploy_aws_infrastructure.outputs.env_file_bucket_name }}
         run: aws s3 cp ${{ env.ENVIRONMENT_FILE_NAME }} s3://${{ env.ENV_FILE_BUCKET_NAME }}/${{ env.ENVIRONMENT_FILE_NAME }}
-
