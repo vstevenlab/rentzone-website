@@ -9,7 +9,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
   working_directory: ./iac
-  TERRAFORM_ACTION: destroy
+  TERRAFORM_ACTION: apply
   GITHUB_USERNAME: vstevenlab
   REPOSITORY_NAME: application-codes
   WEB_FILE_ZIP: rentzone.zip
@@ -297,3 +297,4 @@ jobs:
           ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.environment_file_name }}
           ENV_FILE_BUCKET_NAME: ${{ needs.deploy_aws_infrastructure.outputs.env_file_bucket_name }}
         run: aws s3 cp ${{ env.ENVIRONMENT_FILE_NAME }} s3://${{ env.ENV_FILE_BUCKET_NAME }}/${{ env.ENVIRONMENT_FILE_NAME }}
+
