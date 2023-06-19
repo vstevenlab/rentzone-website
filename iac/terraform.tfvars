@@ -36,3 +36,4 @@ image_tag    = "latest"
 
 # route-53 variables
 record_name = "www"
+
