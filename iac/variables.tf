@@ -120,3 +120,5 @@ variable "record_name" {
   description = "sub domain name"
   type        = string
 }
+
+
