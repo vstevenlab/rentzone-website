@@ -31,3 +31,5 @@ resource "aws_appautoscaling_policy" "ecs_policy" {
 
   depends_on = [aws_appautoscaling_target.ecs_asg]
 }
+
+
