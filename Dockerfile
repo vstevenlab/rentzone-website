@@ -124,3 +124,4 @@ EXPOSE 80 3306
 
 # Start Apache and MySQL
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
